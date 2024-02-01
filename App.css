@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+.borderdivcard{
+    margin: 10px;
+    border-style: solid;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .cardflex{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  
+  .card{
+    border-style: solid;
+    margin: 20px;
+    padding: 5px;
+    width: 350px;
+    height: auto;
+  }
+  .questionborder{
+    margin: 10px;
+    border-style: solid;
+  }

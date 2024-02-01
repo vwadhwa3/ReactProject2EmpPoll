@@ -5,12 +5,14 @@ import { useEffect ,useState } from 'react';
 import {_getUsers} from "../_DATA"
 import {login} from "./reducers/AuthSlice"
 import { createBrowserRouter ,RouterProvider,Outlet} from "react-router-dom";
-import QuestionCard from "./components/QuestionsCard"
+import Leaderboard from "./components/Leaderboard"
+import Questions from "./components/Questions"
 import { createBrowserRouter ,RouterProvider,Outlet} from "react-router-dom"; 
 import { useSelector,useDispatch } from "react-redux";
 import { Provider } from "react-redux";
 import appStore from "./reducers/appStore"
 import Header from './components/Header'
+import Error from './components/Error'
 const AppWrapper = () => {
      
   
@@ -90,14 +92,14 @@ const AppWrapper = () => {
          children:[
              {
                  path:"/",
-                 element:<QuestionCard/>
+                 element:<Questions/>
    
              },
-             // {
-             //     path:"/about",
-             //     element:<Suspense fallback= {<Shimmer/>}> <About/></Suspense>
+             {
+                 path:"/Leaderboard",
+                 element: <Leaderboard/> 
    
-             // },
+             },
              // {
              //     path:"/contact",
              //     element:<Contact/>,

@@ -1,19 +1,34 @@
 const Leaderboard = () => {
     return (
         <div>
-            <table border="3">
+            <table  className="border-black">
                 <thead>
+                <tr>
                     <th>User</th>
                     <th>Answered</th>
                     <th>Created</th>
+                    </tr>
                 </thead>
-                <tbody>
+          
                     <tr>
                         <td>John Doe</td>
                         <td>2</td>
                         <td>2</td>
+                        
                     </tr>
-                </tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>2</td>
+                        <td>2</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>2</td>
+                        <td>2</td>
+                        
+                    </tr>
+                
             </table>
         </div>
     )
