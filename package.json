@@ -1,0 +1,24 @@
+{
+  "name": "employeepoll",
+  "version": "1.0.0",
+  "description": "udacity project 2",
+  "main": "App.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "Build": "parcel build index.html",
+    "test": "jest"
+  },
+  "author": "varun wadhwa",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.1.0",
+    "node": "^21.6.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.1.0",
+    "react-router-dom": "^6.21.3"
+  },
+  "devDependencies": {
+    "parcel": "^2.11.0"
+  }
+}
