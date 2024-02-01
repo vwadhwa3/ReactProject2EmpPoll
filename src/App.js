@@ -67,19 +67,18 @@ const AppWrapper = () => {
                          <Outlet/>
                      </div>
                ) :( 
-                 <div>
+                 <div className="text-center m-4 p-4 h-30 bg-gray-50">
                      <h2>Employee Polls</h2>
                      <form>
-                             <label>User Name
-                             <input type="text" className=""  value={username} placeholder="username" onChange={(e) =>setUsername( e.target.value)  }   />                              
+                             <label className="p-3">User Name:
+                             <input type="text" className="m-3 border border-black rounded-lg"  value={username} placeholder="username" onChange={(e) =>setUsername( e.target.value)  }   />                              
                              </label><br/>  
-                             <label>Password -   
-                             <input type="password" className=""  value={password}   placeholder="pasword" onChange={(e) =>setPassword( e.target.value)  }  /> </label><br/>
-                             <input type="submit" value="submit" onClick={handleClick} />
+                             <label className="p-3">Password:   
+                             <input type="password"  className=" m-3 border border-black rounded-lg" value={password}   placeholder="pasword" onChange={(e) =>setPassword( e.target.value)  }  /> </label><br/>
+                             <input type="submit" className="p-2 mx-16 rounded-lg bg-black text-white shadow-lg" value="submit" onClick={handleClick} />
                       </form>
                    </div>
-                ) }                    
-           
+                ) }                               
      </div>
      )}
    
