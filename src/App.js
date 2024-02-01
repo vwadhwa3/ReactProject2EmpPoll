@@ -67,8 +67,8 @@ const AppWrapper = () => {
                          <Outlet/>
                      </div>
                ) :( 
-                 <div className="text-center m-4 p-4 h-30 bg-gray-50">
-                     <h2>Employee Polls</h2>
+                 <div className=" w-6/12 text-center mt-[10%] ml-[30%]   h-44 bg-gray-200">
+                     <h1>Employee Polls</h1>
                      <form>
                              <label className="p-3">User Name:
                              <input type="text" className="m-3 border border-black rounded-lg"  value={username} placeholder="username" onChange={(e) =>setUsername( e.target.value)  }   />                              
