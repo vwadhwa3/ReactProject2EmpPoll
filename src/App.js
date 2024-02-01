@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import  '../App.css'
 import { useDispatch, useSelector } from 'react-redux'; 
 import { useEffect ,useState } from 'react';
-import {_getUsers} from "../_DATA"
+import {_getUsers} from "./_DATA"
 import {login} from "./reducers/AuthSlice"
 import { createBrowserRouter ,RouterProvider,Outlet} from "react-router-dom";
 import Leaderboard from "./components/Leaderboard"
@@ -13,9 +13,7 @@ import { Provider } from "react-redux";
 import appStore from "./reducers/appStore"
 import Header from './components/Header'
 import Error from './components/Error'
-const AppWrapper = () => {
-     
-  
+const AppWrapper = () => {   
     return (
       <Provider store={appStore}> 
         <AppLayout />  
