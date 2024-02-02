@@ -12,24 +12,23 @@ const Header = () => {
         dispatch(logout())
     }
 const user = useSelector((store) => store.user.user)
-console.log("header = " +user)
-const [loginUser ,setloginUser] =useState("");
+ 
+const [avatarURL, setavatarURL]= useState("")
 
 useEffect(() => {
     getUsers();
  }, []);
- const getUsers = async() => {
-   debugger
-   const data =  await _getUsers()
 
-   setloginUser(data)
+ const getUsers = async() => { 
+   const data =  await _getUsers()
+   const userdata = Object.values(data).map((item)=>item)
+   const filterUserData= userdata.filter(x=> x.id == user)
+   setavatarURL(filterUserData[0].avatarURL)
  }
  
-debugger
-const loginUserData = Object.entries(loginUser);
-const filterlogindata  = loginUserData.filter(x => x[1].id == user)
-const {avatarURL} =filterlogindata[0][1]
-console.log(avatarURL)
+ 
+ 
+
  
 return (
     <div className="flex justify-between bg-blue-100 shadow-lg sm:bg-yellow-50">

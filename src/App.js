@@ -24,7 +24,7 @@ const AppWrapper = () => {
      //const user= null;  
     const user = useSelector((store) => store.user.user)
     const dispatch = useDispatch()
-     console.log("logged User " +user)
+      
     const [userList,setuserList]= useState();
      useEffect(() => {
        getUsers();
@@ -42,7 +42,7 @@ const AppWrapper = () => {
     const [password, setPassword] = useState("password123");
     
     const handleClick = (event) => {
-      debugger;
+  
       setPassword(password);
       setUsername(username);
       if(username && password) {
