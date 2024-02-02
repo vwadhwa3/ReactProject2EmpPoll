@@ -38,8 +38,8 @@ return (
     <div className="flex items-center">
         <ul className="flex p-4 m-4">          
             <li className="px-4"><Link to="/">Home</Link></li>
-            <li className="px-4"><Link to="/Leaderboard">Leaderboard</Link></li>
-            <li className="px-4"><Link to="/New">New</Link> </li>
+            <li className="px-4"><Link to="/leaderboard">Leaderboard</Link></li>
+            <li className="px-4"><Link to="/add">New</Link> </li>
             <li className="px-4"><img className="w-9 h-9" src={avatarURL} alt="user img"/></li>
             <li className="px-4"> <button onClick={handleClick}>Logout</button></li>
         </ul>

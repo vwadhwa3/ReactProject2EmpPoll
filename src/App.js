@@ -14,6 +14,9 @@ import appStore from "./reducers/appStore"
 import Header from './components/Header'
 import Error from './components/Error'
 import PollCreactionPage from './components/PollCreationPage'
+import PollPage from './components/PollPage'
+
+
 const AppWrapper = () => {   
     return (
       <Provider store={appStore}> 
@@ -95,22 +98,20 @@ const AppWrapper = () => {
    
              },
              {
-                 path:"/Leaderboard",
+                 path:"/leaderboard",
                  element: <Leaderboard/> 
    
              },
              {
-                 path:"/New",
+                 path:"/add",
                  element:<PollCreactionPage/>,
    
              },
-             // {
-             //     path:"/Grocery",
-             //     element:<Suspense fallback= {<Shimmer/>}>
-             //                 <Grocery/>
-             //            </Suspense>  ,
+             {
+                 path:"/questions/:question_id",
+                 element: <PollPage  /> ,
    
-             // },
+             },
              // {
              //     path: "/restaurants/:resId",
              //     element:<RestaurantMenu />

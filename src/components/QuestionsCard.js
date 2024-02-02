@@ -1,6 +1,6 @@
 const QuestionCard =(props)=>{
-    console.log("props===")
-    console.log(props?.data)
+    // console.log("props===")
+    // console.log(props?.data)
     const {author,timestamp }= props?.data
     return(
         <div className="cardflex bg-gray-200 ml-1 mb-1 mr-2">
