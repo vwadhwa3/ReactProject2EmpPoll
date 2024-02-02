@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import appStore from "./reducers/appStore"
 import Header from './components/Header'
 import Error from './components/Error'
+import PollCreactionPage from './components/PollCreationPage'
 const AppWrapper = () => {   
     return (
       <Provider store={appStore}> 
@@ -98,11 +99,11 @@ const AppWrapper = () => {
                  element: <Leaderboard/> 
    
              },
-             // {
-             //     path:"/contact",
-             //     element:<Contact/>,
+             {
+                 path:"/New",
+                 element:<PollCreactionPage/>,
    
-             // },
+             },
              // {
              //     path:"/Grocery",
              //     element:<Suspense fallback= {<Shimmer/>}>
