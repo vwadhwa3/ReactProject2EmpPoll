@@ -2,10 +2,10 @@ import ReactDOM from "react-dom/client";
 import  '../App.css'
 import { useDispatch, useSelector } from 'react-redux'; 
 import { useEffect ,useState } from 'react';
-import {_getUsers} from "./_DATA"
+import {_getUsers,_getQuestions} from "./_DATA"
 import {login} from "./reducers/AuthSlice"
 import { createBrowserRouter ,RouterProvider,Outlet} from "react-router-dom";
-import Leaderboard from "./components/Leaderboard"
+import Leaderboard from './components/LeaderBoard'
 import Questions from "./components/Questions"
 import { createBrowserRouter ,RouterProvider,Outlet} from "react-router-dom"; 
 import { useSelector,useDispatch } from "react-redux";
@@ -15,7 +15,8 @@ import Header from './components/Header'
 import Error from './components/Error'
 import PollCreactionPage from './components/PollCreationPage'
 import PollPage from './components/PollPage'
-
+import {allUserData} from "./reducers/AllUserDataSlice"
+import {allQuestionData} from "./reducers/allQuestionSlice"
 
 const AppWrapper = () => {   
     return (
@@ -25,26 +26,37 @@ const AppWrapper = () => {
     )
   }
    const AppLayout =()=>{ 
+    const [userList,setuserList]= useState();
+    const [username, setUsername] = useState("sarahedo");
+    const [password, setPassword] = useState("password123");
      //const user= null;  
     const user = useSelector((store) => store.user.user)
     const dispatch = useDispatch()
       
-    const [userList,setuserList]= useState();
-     useEffect(() => {
-       getUsers();
-    }, []);
-    
-    const getUsers = async () => {
-      debugger
-      const data = await _getUsers()
-      
-      setuserList(data)
-       
-    }
-    
-    const [username, setUsername] = useState("sarahedo");
-    const [password, setPassword] = useState("password123");
-    
+   
+    useEffect(()=>{
+     // console.log("use Effect called login ")
+      getAllUSer()
+      getAllQuestiondata()
+  },[])
+
+  const getAllUSer = async () => {
+    const data = await _getUsers();
+    const convertingAllUserData = Object.values(await data)
+    const jsonAllUserData = JSON.parse(JSON.stringify(await convertingAllUserData));
+    setuserList(jsonAllUserData)
+    dispatch(allUserData(await jsonAllUserData))
+}
+
+    const getAllQuestiondata = async () =>{
+        const data = await _getQuestions()
+        const convertingAllQuestionData = Object.values(await data)
+        const jsonAllQuestionData =JSON.parse(JSON.stringify(await convertingAllQuestionData))
+        //console.log(jsonAllQuestionData)
+        dispatch(allQuestionData(jsonAllQuestionData))        
+      }
+
+   
     const handleClick = (event) => {
   
       setPassword(password);
