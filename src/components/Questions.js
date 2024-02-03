@@ -8,8 +8,8 @@ const Questions =()=>{
   const  allQuestionData = useSelector((store)=> store.allQuestion.allQuestion)
   const questions = []
   allQuestionData.map( x => questions.push(x))
-  questions.sort((firstItem, secondItem) => secondItem.timestamp - firstItem.timestamp);
-  questions.forEach(val => val.timestamp = new Date(val.timestamp).toLocaleString())
+
+   questions.sort((firstItem, secondItem) => secondItem.timestamp - firstItem.timestamp)
    const newQuestions = questions.filter( val=>{
     return val.optionOne.votes.includes(loggedInUser) === false &&
     val.optionTwo.votes.includes(loggedInUser )=== false

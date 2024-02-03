@@ -12,12 +12,15 @@ const Header = () => {
     }
     const user = useSelector((store) => store.user.user)
     const filterUserData= allUserData.filter(x=> x.id == user)    
-    const{ avatarURL} = filterUserData[0]
+    const{ avatarURL,id} = filterUserData[0]
 
 return (
     <div className="flex justify-between bg-blue-100 shadow-lg sm:bg-yellow-50">
     <div className="Logo-container">  
-        <img className=" h-24" src={avatarURL} alt="user img"/>      
+        <div className="flex items-center">
+            <img className=" h-24 mr-2" src={avatarURL} alt="user img"/>      
+            <span className=" ml-2 mr-2">{id} </span>
+        </div>
     </div>
     <div className="flex items-center">
         <ul className="flex p-4 m-4">          

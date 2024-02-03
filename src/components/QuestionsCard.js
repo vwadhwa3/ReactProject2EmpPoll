@@ -1,15 +1,27 @@
+import { Link } from "react-router-dom"
 const QuestionCard =(props)=>{
-    // console.log("props===")
-    // console.log(props?.data)
-    const {author,timestamp }= props?.data
+    const {author,timestamp,id }= props?.data
     return(
-        <div className="cardflex bg-gray-200 ml-1 mb-1 mr-2">
-            <div className="card text-center">
-                <span className="  font-bold">{author}</span><br/>
-                 <span>{timestamp}</span><br/>
-                <button className="p-2 mx-16 rounded-lg bg-black text-white shadow-lg"  >Show</button>
-            </div>
-        </div>        
+        <div className="flex bg-gray-200 ml-1 mb-1 mr-2">
+          
+        
+
+<div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+<h5 class="mb-4 text-xl font-medium text-center text-gray-500 dark:text-gray-400">{author}</h5>
+
+<ul role="list" class="space-y-5 my-7">
+<li class="flex items-center">
+<span class="text-base font-normal  leading-tight text-gray-500 dark:text-gray-400 ms-3">{new Date(timestamp).toLocaleString()}</span>
+</li>
+</ul>
+<Link to={"/questions/"+ id } key={id}>
+<button type="button" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Show</button>
+
+</Link>
+</div>
+</div> 
+        
+
     )
 }
 export default QuestionCard

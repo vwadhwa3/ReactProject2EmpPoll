@@ -83,16 +83,24 @@ const AppWrapper = () => {
                          <Outlet/>
                      </div>
                ) :( 
-                 <div className=" w-6/12 text-center mt-[10%] ml-[30%]   h-44 bg-gray-200">
-                     <h1>Employee Polls</h1>
-                     <form>
-                             <label className="p-3">User Name:
-                             <input type="text" className="m-3 border border-black rounded-lg"  value={username} placeholder="username" onChange={(e) =>setUsername( e.target.value)  }   />                              
-                             </label><br/>  
-                             <label className="p-3">Password:   
-                             <input type="password"  className=" m-3 border border-black rounded-lg" value={password}   placeholder="pasword" onChange={(e) =>setPassword( e.target.value)  }  /> </label><br/>
-                             <input type="submit" className="p-2 mx-16 rounded-lg bg-black text-white shadow-lg" value="submit" onClick={handleClick} />
+                // <div className=" w-6/12 text-center mt-[10%] ml-[30%]   h-44 bg-gray-200">
+                <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">  
+                <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Employee Polls</h1>
+                <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                     <form className="space-y-6">
+                             <label className="block text-sm font-medium leading-6 text-gray-900">User Name:</label>
+                             <div className="mt-2">
+                              <input type="text" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"  value={username} placeholder="username" onChange={(e) =>setUsername( e.target.value)  }   />                            
+                               </div>
+                               
+                             
+                             <label className="block text-sm font-medium leading-6 text-gray-900">Password:   </label>
+                             <input type="password"  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"  value={password}   placeholder="pasword" onChange={(e) =>setPassword( e.target.value)  }  />  
+                             <div>
+        <button type="submit" onClick={handleClick}  class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+      </div>
                       </form>
+                      </div>
                    </div>
                 ) }                               
      </div>
