@@ -83,25 +83,24 @@ const AppWrapper = () => {
                          <Outlet/>
                      </div>
                ) :( 
-                // <div className=" w-6/12 text-center mt-[10%] ml-[30%]   h-44 bg-gray-200">
-                <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8  ">  
-                <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-black">Employee Polls</h1>
-                <div classname="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                     <form className="space-y-6">
-                             <label className="block text-sm font-medium leading-6 text-black">User Name:</label>
-                             <div className="mt-2">
-                              <input type="text" className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"  value={username} placeholder="username" onChange={(e) =>setUsername( e.target.value)  }   />                            
-                               </div>
-                               
-                             
-                             <label className="block text-sm font-medium leading-6 text-black">Password:   </label>
-                             <input type="password"  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"  value={password}   placeholder="pasword" onChange={(e) =>setPassword( e.target.value)  }  />  
-                             <div>
-        <button type="submit" onClick={handleClick}  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-      </div>
-                      </form>
-                      </div>
-                   </div>
+                <div className="bg-gray-200 flex justify-center items-center h-screen">
+                <div className="bg-white p-8 rounded-lg shadow-md w-96 text-center">
+                    
+                    <h2 className="text-2xl font-semibold mb-2">Employee Polls</h2>
+                    <p className="text-gray-600 mb-6">Please log in to continue.</p>
+                    <form>
+                        <div class="mb-4">
+                            <label for="text" className="block text-gray-700">User Name:</label>
+                            <input type="text" value={username}  onChange={(e) =>setUsername( e.target.value)  }   id="email" name="email" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none" placeholder="Enter your email" />
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" className="block text-gray-700">Password:</label>
+                            <input type="password"  value={password}   onChange={(e) =>setPassword( e.target.value) } id="password" name="password" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none" placeholder="Enter your password" />
+                        </div>
+                        <button type="submit" onClick={handleClick}  className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Login</button>
+                         </form>
+                </div>
+            </div>   
                 ) }                               
      </div>
      )}
