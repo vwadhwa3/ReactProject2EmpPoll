@@ -20,31 +20,31 @@ const PollPage=()=>{
     const getUserDataForQuestion = getAllUser.filter(x => x.id == author)
    const {    avatarURL,name   } = getUserDataForQuestion[0]
     return(
-        <div className="text-center bg-gray-100 w-6/12 ml-[24%] mt-24 " >
-            <div className="m-6">
-                <h3 className="m-4">Poll by {author}</h3>
+        // <div className="text-center bg-gray-100 w-6/12 ml-[24%] mt-24 " >
+             
+<div className="bg-gray-200 flex justify-center items-center h-screen">
+    <div className="bg-white p-8 rounded-lg shadow-md w-96 text-center">
+    <h2 className="text-2xl font-semibold mb-2">Poll by {author}</h2>
+        <img src={avatarURL} alt="Logo" class="mx-auto h-60 mb-4" />
+        
+        <p className="text-gray-600 mb-6">Would You Rather</p>
+        <form>
+            <div class="mb-4">
+                <label for="email" className="block text-gray-700">{optionOne.text}</label>
+                <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Login</button>
             </div>
-            <div className="ml-[47%] m-3">
-                <img className=" h-16 w-16"  src={avatarURL} alt="user img " /> 
+            <div class="mb-4">
+                <label for="password" className="block text-gray-700">{optionTwo.text}</label>
+                <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Login</button>
             </div>
-            <p>Would You Rather</p>
-            <div className="cardflex ml-[30%]">
-                <div className="card">
-                    <div> 
-                        <div>{optionOne.text}</div>
-                        <button className="bg-green-300 text-black p-2 rounded-2xl">Click Me</button>
-                    </div>
-                     
-                </div>
-                <div className="card">
-                    <div> 
-                        <div>{optionTwo.text}</div>
-                        <button className="bg-green-300 text-black p-2 rounded-2xl">Click Me</button>
-                    </div>
-                     
-                </div>
-            </div>
-        </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+        
     )
 }
 

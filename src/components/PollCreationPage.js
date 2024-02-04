@@ -1,25 +1,31 @@
 
 const PollCreactionPage =()=>{
     return (
-        <div className="text-center">
+       // <div className="text-center">
             
-            <h3 className=" mt-4 p-2 border-b-2 border-t-2   border-gray-100">Would You Rather</h3>
+             
 
-            <h5 className="mt-2 border-b-2 border-gray-100 ">Create Your Own Poll </h5>
+            <div className="bg-gray-200 flex justify-center items-center h-screen">
+    <div className="bg-white p-8 rounded-lg shadow-md w-96 text-center">
         
-            <form>
-                <label>
-                    First Option :
-                    <input type="text" className="m-3 border border-black rounded-lg"  id="firstOption" placeholder="First Option "/>
-                </label><br/>
-                <label>
-                    Second Option :
-                    <input type="text" className="m-3 border border-black rounded-lg"   id="secondOption" placeholder="Second Option "/>
-                </label><br/>
-                <button className="p-2 mx-16 rounded-lg bg-black text-white shadow-lg">Submit</button>
-                
-            </form>
-        </div>
+        <h2 className="text-2xl font-semibold mb-2">Would You Rather</h2>
+        <p className="text-gray-600 mb-6">Create Your Own Poll</p>
+        <form>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700">First Option</label>
+                <input type="email" id="email" name="email" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none" placeholder="Enter your email" />
+            </div>
+            <div class="mb-4">
+                <label for="password" className="block text-gray-700">Second Option</label>
+                <input type="password" id="password" name="password" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none" placeholder="Enter your password" />
+            </div>
+            <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Submit</button>
+      </form>
+    </div>
+</div>
+
+
+       // </div>
     )
 }
 
