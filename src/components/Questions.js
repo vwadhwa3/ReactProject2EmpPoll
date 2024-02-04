@@ -20,10 +20,10 @@ const Questions =()=>{
 
   return (
         <div>
-            <div className="questionborder bg-gray-50">
+            <div className="m-[10px] bg-gray-50">
                 <h3 className='font-bold'>New Question</h3>
                 <hr/>
-                <div className='cardflex'>
+                <div className='flex'>
                 {
                     newQuestions?.map(
                         (x) =>  <QuestionCard  key={x.id}  data={x}  /> 
@@ -31,10 +31,10 @@ const Questions =()=>{
                 }                              
                 </div>
             </div>
-            <div className="questionborder  bg-gray-50">
+            <div className="m-[10px]  bg-gray-50">
                 <h3 className='font-bold'>Answered Question</h3>
                 <hr/>
-                <div className='cardflex'>
+                <div className='flex'>
                     {
                         doneQuestions?.map(
                             (y)=> <QuestionCard key={y.id} data={y}/>
