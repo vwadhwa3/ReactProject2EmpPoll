@@ -8,9 +8,9 @@ const Leaderboard = () => {
 
   const leaderboardData = [];
 
-  allUsers.map(val => {
-    leaderboardData.push({name: val.name, avatarURL: val.avatarURL,answer:  ( questionData.filter(item => item.optionOne.votes.includes(val.id) === true || 
-        item.optionTwo.votes.includes(val.id)=== true)).length, 
+  allUsers?.map(val => {
+    leaderboardData?.push({name: val.name, avatarURL: val.avatarURL,answer:  ( questionData.filter(item => item?.optionOne?.votes?.includes(val.id) === true || 
+        item?.optionTwo?.votes?.includes(val.id)=== true)).length, 
     create: questionData.filter(item => item.author === val.id).length})
   })
 

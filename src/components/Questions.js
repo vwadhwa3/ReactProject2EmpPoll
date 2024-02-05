@@ -6,17 +6,19 @@ const Questions =()=>{
  
   const loggedInUser = useSelector(store=> store.user.user)
   const  allQuestionData = useSelector((store)=> store.allQuestion.allQuestion)
+  console.log(allQuestionData);
+
   const questions = []
-  allQuestionData.map( x => questions.push(x))
+  allQuestionData?.map( x => questions.push(x))
 
    questions.sort((firstItem, secondItem) => secondItem.timestamp - firstItem.timestamp)
-   const newQuestions = questions.filter( val=>{
-    return val.optionOne.votes.includes(loggedInUser) === false &&
-    val.optionTwo.votes.includes(loggedInUser )=== false
+   const newQuestions = questions?.filter( val=>{
+    return val?.optionOne?.votes?.includes(loggedInUser) === false &&
+    val?.optionTwo?.votes?.includes(loggedInUser )=== false
   } )
   
-  const doneQuestions = questions.filter(val=> val.optionOne.votes.includes(loggedInUser) === true ||
-  val.optionTwo.votes.includes(loggedInUser) === true)
+  const doneQuestions = questions?.filter(val=> val?.optionOne?.votes.includes(loggedInUser) === true ||
+  val?.optionTwo?.votes?.includes(loggedInUser) === true)
 
   return (
         <div>

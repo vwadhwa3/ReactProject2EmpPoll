@@ -1,14 +1,15 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
+import { useState } from "react";
 const PollPage=()=>{
     const { question_id } = useParams();
-    console.log(question_id)
+ 
     const getQuestion = useSelector(store => store.allQuestion.allQuestion)
-    console.log(getQuestion)
+  
     const loggedInUser = useSelector( store => store.user.user)
-    console.log(loggedInUser)
+     
     const getAllUser = useSelector(store => store.allUser.allUser)
-    console.log(getAllUser)
+    
 
     const filterQuestion =getQuestion.filter(x =>x.id == question_id )
    const{ 
@@ -19,32 +20,77 @@ const PollPage=()=>{
     timestamp}    = filterQuestion[0]
     const getUserDataForQuestion = getAllUser.filter(x => x.id == author)
    const {    avatarURL,name   } = getUserDataForQuestion[0]
+
+   const [voteCount1, setVoteCount1] = useState(0);
+   const [voteCount2, setVoteCount2] = useState(0);
+
+   const [isDisable, setIsDisable] = useState(false);
+   const [disableOption1, setIdisableOption1] = useState(false);
+   const [disableOption2, setdisableOption2] = useState(false);
+
+   const handleClick = (event) => {
+    debugger
+        event.preventDefault()
+        if (isDisable == false) {
+            setIsDisable(true);
+            setAnswer(event);
+            if(event == 'optionOne') {
+                setVoteCount1( voteCount1+ 1);
+                setIdisableOption1(true);
+            }
+            else {
+                setVoteCount2(voteCount2 + 1);
+                setdisableOption2(true);
+            }
+            const answerjson = { authedUser: loggedInUser, qid: questionId, answer: event };
+            dispatch(saveQuestionAnswer(answerjson));
+          }
+    }
+
     return(
-        // <div className="text-center bg-gray-100 w-6/12 ml-[24%] mt-24 " >
-             
 <div className="bg-gray-200 flex justify-center items-center h-screen">
     <div className="bg-white p-8 rounded-lg shadow-md w-96 text-center">
     <h2 className="text-2xl font-semibold mb-2">Poll by {author}</h2>
-        <img src={avatarURL} alt="Logo" class="mx-auto h-60 mb-4" />
-        
+        <img src={avatarURL} alt="Logo" className="mx-auto h-60 mb-4" />        
         <p className="text-gray-600 mb-6">Would You Rather</p>
         <form>
-            <div class="mb-4">
-                <label for="email" className="block text-gray-700">{optionOne.text}</label>
-                <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Login</button>
+            <div className="mb-4">
+                <label  className="block text-gray-700">{optionOne.text}</label>
+                <button type="submit" onClick={() => handleClick("optionOne")}   className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Click To Answer</button>
+                <span
+              style={
+                isDisable
+                  ? { display: "inline-block" }
+                  : { display: "none" }
+              }
+            >
+              voted people: {voteCount1}
+              <br /> percentage:
+              {((voteCount1 * 100) /
+                (voteCount1+ voteCount2)).toFixed(2)}
+              %
+            </span>
             </div>
-            <div class="mb-4">
-                <label for="password" className="block text-gray-700">{optionTwo.text}</label>
-                <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Login</button>
+            <div className="mb-4">
+                <label className="block text-gray-700">{optionTwo.text}</label>
+                <button type="submit" onClick={() => handleClick("optionTwo")} className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Click To Answer</button>
+                <span
+              style={
+                isDisable
+                  ? { display: "inline-block" }
+                  : { display: "none" }
+              }
+            >
+              voted people: {voteCount2}
+              <br /> percentage:
+              {((voteCount2 * 100) /
+                (voteCount1+ voteCount2)).toFixed(2)}
+              %
+              </span>
             </div>
-
         </form>
     </div>
-</div>
-
-
-
-        
+</div>        
     )
 }
 

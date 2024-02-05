@@ -52,7 +52,6 @@ const AppWrapper = () => {
         const data = await _getQuestions()
         const convertingAllQuestionData = Object.values(await data)
         const jsonAllQuestionData =JSON.parse(JSON.stringify(await convertingAllQuestionData))
-        //console.log(jsonAllQuestionData)
         dispatch(allQuestionData(jsonAllQuestionData))        
       }
 
@@ -89,12 +88,12 @@ const AppWrapper = () => {
                     <h2 className="text-2xl font-semibold mb-2">Employee Polls</h2>
                     <p className="text-gray-600 mb-6">Please log in to continue.</p>
                     <form>
-                        <div class="mb-4">
-                            <label for="text" className="block text-gray-700">User Name:</label>
-                            <input type="text" value={username}  onChange={(e) =>setUsername( e.target.value)  }   id="email" name="email" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none" placeholder="Enter your email" />
+                        <div className="mb-4">
+                            <label htmlFor="username" className="block text-gray-700">User Name:</label>
+                            <input type="text" value={username}  onChange={(e) =>setUsername( e.target.value)  }   id="username" name="username" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none" placeholder="Enter your email" />
                         </div>
-                        <div class="mb-4">
-                            <label for="password" className="block text-gray-700">Password:</label>
+                        <div className="mb-4">
+                            <label htmlFor="password" className="block text-gray-700">Password:</label>
                             <input type="password"  value={password}   onChange={(e) =>setPassword( e.target.value) } id="password" name="password" className="w-full px-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none" placeholder="Enter your password" />
                         </div>
                         <button type="submit" onClick={handleClick}  className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Login</button>
@@ -130,11 +129,7 @@ const AppWrapper = () => {
                  path:"/questions/:question_id",
                  element: <PollPage  /> ,
    
-             },
-             // {
-             //     path: "/restaurants/:resId",
-             //     element:<RestaurantMenu />
-             // }
+             },            
          ],
          errorElement:<Error/>
      },
