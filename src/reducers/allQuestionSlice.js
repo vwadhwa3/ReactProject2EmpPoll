@@ -12,11 +12,11 @@ const allQuestionSlice = createSlice({
          },  
          addNewAnswer(state  , action) {
           if (action.payload.option === "optionOne") {
-            state.Questions[action.payload.id].optionOne.votes.push(
+            state.allQuestion[action.payload.id].optionOne.votes.push(
               action.payload.userid
             );
           } else if (action.payload.option === "optionTwo") {
-           state.Questions[action.payload.id].optionTwo.votes.push(
+           state.allQuestion[action.payload.id].optionTwo.votes.push(
               action.payload.userid
             );
           }
