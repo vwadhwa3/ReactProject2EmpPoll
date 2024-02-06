@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {saveQuestionAnswer} from "../reducers/allQuestionSlice"
 const PollPage=()=>{
     const { question_id } = useParams();
- 
+    const dispatch = useDispatch()
     const getQuestion = useSelector(store => store.allQuestion.allQuestion)
   
     const loggedInUser = useSelector( store => store.user.user)
@@ -12,6 +14,7 @@ const PollPage=()=>{
     
 
     const filterQuestion =getQuestion.filter(x =>x.id == question_id )
+
    const{ 
     author,
     id,
@@ -23,14 +26,29 @@ const PollPage=()=>{
 
    const [voteCount1, setVoteCount1] = useState(0);
    const [voteCount2, setVoteCount2] = useState(0);
-
+   const [answer, setAnswer] = useState("");
    const [isDisable, setIsDisable] = useState(false);
    const [disableOption1, setIdisableOption1] = useState(false);
    const [disableOption2, setdisableOption2] = useState(false);
+   
+   useEffect(() => {
+    setVoteCount1(filterQuestion[0]?.optionOne.votes.length)
+    setVoteCount2(filterQuestion[0]?.optionTwo.votes.length)
+    if (filterQuestion[0]?.optionOne.votes.includes(
+       loggedInUser
+    ) || filterQuestion[0]?.optionTwo.votes.includes(
+       loggedInUser
+    )) {
+      setIsDisable(true);
+    }
+  }, [filterQuestion]);
+
+
+
 
    const handleClick = (event) => {
     debugger
-        event.preventDefault()
+     
         if (isDisable == false) {
             setIsDisable(true);
             setAnswer(event);
@@ -42,7 +60,7 @@ const PollPage=()=>{
                 setVoteCount2(voteCount2 + 1);
                 setdisableOption2(true);
             }
-            const answerjson = { authedUser: loggedInUser, qid: questionId, answer: event };
+            const answerjson = { authedUser: loggedInUser, qid: question_id, answer: event };
             dispatch(saveQuestionAnswer(answerjson));
           }
     }
@@ -56,13 +74,13 @@ const PollPage=()=>{
         <form>
             <div className="mb-4">
                 <label  className="block text-gray-700">{optionOne.text}</label>
-                <button type="submit" onClick={() => handleClick("optionOne")}   className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Click To Answer</button>
+                <button type="button" onClick={() => handleClick("optionOne")}   className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Click To Answer</button>
                 <span
-              style={
-                isDisable
-                  ? { display: "inline-block" }
-                  : { display: "none" }
-              }
+              // style={
+              //   isDisable
+              //     ? { display: "inline-block" }
+              //     : { display: "none" }
+              // }
             >
               voted people: {voteCount1}
               <br /> percentage:
@@ -73,13 +91,13 @@ const PollPage=()=>{
             </div>
             <div className="mb-4">
                 <label className="block text-gray-700">{optionTwo.text}</label>
-                <button type="submit" onClick={() => handleClick("optionTwo")} className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Click To Answer</button>
+                <button type="button" onClick={() => handleClick("optionTwo")} className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Click To Answer</button>
                 <span
-              style={
-                isDisable
-                  ? { display: "inline-block" }
-                  : { display: "none" }
-              }
+              // style={
+              //   isDisable
+              //     ? { display: "inline-block" }
+              //     : { display: "none" }
+              // }
             >
               voted people: {voteCount2}
               <br /> percentage:
