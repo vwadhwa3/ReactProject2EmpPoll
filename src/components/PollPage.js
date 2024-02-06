@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {saveQuestionAnswer} from "../reducers/allQuestionSlice"
+import {addNewAnswer} from "../reducers/allQuestionSlice"
 const PollPage=()=>{
     const { question_id } = useParams();
     const dispatch = useDispatch()
@@ -44,8 +44,6 @@ const PollPage=()=>{
   }, [filterQuestion]);
 
 
-
-
    const handleClick = (event) => {
     debugger
      
@@ -60,8 +58,8 @@ const PollPage=()=>{
                 setVoteCount2(voteCount2 + 1);
                 setdisableOption2(true);
             }
-            const answerjson = { authedUser: loggedInUser, qid: question_id, answer: event };
-            dispatch(saveQuestionAnswer(answerjson));
+            const answerjson = { userid: loggedInUser, id: question_id, option: event };
+            dispatch(addNewAnswer(answerjson));
           }
     }
 
@@ -76,11 +74,11 @@ const PollPage=()=>{
                 <label  className="block text-gray-700">{optionOne.text}</label>
                 <button type="button" onClick={() => handleClick("optionOne")}   className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Click To Answer</button>
                 <span
-              // style={
-              //   isDisable
-              //     ? { display: "inline-block" }
-              //     : { display: "none" }
-              // }
+              style={
+                isDisable
+                  ? { display: "inline-block" }
+                  : { display: "none" }
+              }
             >
               voted people: {voteCount1}
               <br /> percentage:
@@ -93,11 +91,11 @@ const PollPage=()=>{
                 <label className="block text-gray-700">{optionTwo.text}</label>
                 <button type="button" onClick={() => handleClick("optionTwo")} className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300 mb-2">Click To Answer</button>
                 <span
-              // style={
-              //   isDisable
-              //     ? { display: "inline-block" }
-              //     : { display: "none" }
-              // }
+              style={
+                isDisable
+                  ? { display: "inline-block" }
+                  : { display: "none" }
+              }
             >
               voted people: {voteCount2}
               <br /> percentage:

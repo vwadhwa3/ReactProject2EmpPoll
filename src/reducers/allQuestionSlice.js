@@ -9,26 +9,26 @@ const allQuestionSlice = createSlice({
     reducers:{
        allQuestionData :(state,action)=>{
             state.allQuestion = action.payload
-         },                    
-    },extraReducers: (b) => {
-        b          
-          .addCase("addQuestion", (state, action) => {             
+         },  
+         addNewAnswer(state, action) {
+          if (action.payload.option === "optionOne") {
+            state.Questions[action.payload.id].optionOne.votes.push(
+              action.payload.userid
+            );
+          } else if (action.payload.option === "optionTwo") {
+           state.Questions[action.payload.id].optionTwo.votes.push(
+              action.payload.userid
+            );
+          }
+        },
+  },
+    extraReducers: (b) => {
+        b.addCase("addQuestion", (state, action) => {             
             state.allQuestion.push( action.payload);        
-          })
-          .addCase("ansQuestion", (state, action) => {
-            const allquestionsdata = {
-              ...state.allQuestion,[action.payload.qid]:{...state.allQuestion[action.payload.qid],
-                [action.payload.answer]:{...state.allQuestion[action.payload.qid][action.payload.answer],
-                  votes: state.allQuestion[action.payload.qid][action.payload.answer].
-                  votes.concat([action.payload.authedUser]),
-                },
-              },
-            };
-            state.allQuestion = allquestionsdata;
-          });
-      },
+          });       
+      },    
+    })
 
-})
 
 
 
@@ -37,10 +37,7 @@ export const saveQuestion=(saveQuestionData)=>async(d)=>{
     d({type:"addQuestion",payload:data});
 };
   
-export const saveQuestionAnswer=({ authedUser,qid,answer})=>async(d)=>{
-  await _saveQuestionAnswer({ authedUser,qid,answer });
-  d({type:"ansQuestion",payload:{authedUser,qid,answer}});
-};
-export const {allQuestionData} = allQuestionSlice.actions;
+ 
+export const {allQuestionData,addNewAnswer} = allQuestionSlice.actions;
 
 export default allQuestionSlice.reducer;
