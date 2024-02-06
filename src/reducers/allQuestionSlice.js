@@ -10,7 +10,7 @@ const allQuestionSlice = createSlice({
        allQuestionData :(state,action)=>{
             state.allQuestion = action.payload
          },  
-         addNewAnswer(state, action) {
+         addNewAnswer(state  , action) {
           if (action.payload.option === "optionOne") {
             state.Questions[action.payload.id].optionOne.votes.push(
               action.payload.userid
