@@ -1,7 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit"; 
+import { createSlice ,current} from "@reduxjs/toolkit"; 
 import {_saveQuestion,_saveQuestionAnswer} from '../_DATA';
+ 
 
 const allQuestionSlice = createSlice({
+
     name:"allQuestion",
     initialState:{
         allQuestion:null
@@ -11,17 +13,23 @@ const allQuestionSlice = createSlice({
             state.allQuestion = action.payload
          },  
          addNewAnswer(state  , action) {
+          debugger
+         
+          const {allQuestion} = current(state)
+          console.log(     )
+         
+          // console.log(state.allQuestion[1])
+           
           if (action.payload.option === "optionOne") {
-            state.allQuestion[action.payload.id].optionOne.votes.push(
-              action.payload.userid
-            );
+            allQuestion.filter( x=> x.id == action.payload.id)[0].optionOne.votes.concat(action.payload.userid)    
+            console.log(    allQuestion.filter( x=> x.id == action.payload.id)[0].optionOne.votes.concat(action.payload.userid)    )        
           } else if (action.payload.option === "optionTwo") {
-           state.allQuestion[action.payload.id].optionTwo.votes.push(
-              action.payload.userid
-            );
+            allQuestion.filter( x=> x.id == action.payload.id)[0].optionTwo.votes.concat(action.payload.userid)
+            console.log(  allQuestion.filter( x=> x.id == action.payload.id)[0].optionTwo.votes.concat(action.payload.userid) )
           }
         },
   },
+
     extraReducers: (b) => {
         b.addCase("addQuestion", (state, action) => {             
             state.allQuestion.push( action.payload);        

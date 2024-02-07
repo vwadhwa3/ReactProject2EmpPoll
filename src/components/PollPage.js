@@ -6,8 +6,11 @@ import {addNewAnswer} from "../reducers/allQuestionSlice"
 const PollPage=()=>{
     const { question_id } = useParams();
     const dispatch = useDispatch()
+
     const getQuestion = useSelector(store => store.allQuestion.allQuestion)
-  
+
+ 
+
     const loggedInUser = useSelector( store => store.user.user)
      
     const getAllUser = useSelector(store => store.allUser.allUser)
@@ -59,7 +62,7 @@ const PollPage=()=>{
                 setdisableOption2(true);
             }
             const answerjson = { userid: loggedInUser, id: question_id, option: event };
-            dispatch(addNewAnswer(answerjson));
+            dispatch(addNewAnswer(answerjson ));
           }
     }
 

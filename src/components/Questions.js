@@ -6,7 +6,8 @@ const Questions =()=>{
  
   const loggedInUser = useSelector(store=> store.user.user)
   const  allQuestionData = useSelector((store)=> store.allQuestion.allQuestion)
-  console.log(allQuestionData);
+ 
+  console.log(allQuestionData)
 
   const questions = []
   allQuestionData?.map( x => questions.push(x))
