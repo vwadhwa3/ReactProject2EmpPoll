@@ -15,9 +15,9 @@ const allQuestionSlice = createSlice({
          addNewAnswer(state  , action) {       
 
           if (action.payload.option === "optionOne") {
-            state.allQuestion[action.payload.id]["optionOne"].votes.push(action.payload.userid);
+            state.allQuestion[action.payload.qid]["optionOne"].votes.push(action.payload.authedUser);
             } else if (action.payload.option === "optionTwo") {
-            state.allQuestion[action.payload.id]["optionTwo"].votes.push(action.payload.userid);
+            state.allQuestion[action.payload.qid]["optionTwo"].votes.push(action.payload.authedUser);
             }
              
  
