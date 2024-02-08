@@ -61,7 +61,7 @@ const PollPage=()=>{
                 setVoteCount2(voteCount2 + 1);
                 setdisableOption2(true);
             }
-            const answerjson = { userid: loggedInUser, id: question_id, option: event };
+            const answerjson = { authedUser: loggedInUser, qid: question_id, option: event };
             dispatch(addNewAnswer(answerjson ));
           }
     }
