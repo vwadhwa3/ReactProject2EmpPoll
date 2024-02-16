@@ -1,25 +1,31 @@
 import QuestionCard from './QuestionsCard'
-import { useDispatch ,useSelector } from "react-redux"; 
-import {_getQuestions} from '../_DATA'
+import { useSelector } from "react-redux";
 import { useEffect, useState } from 'react';
+
 const Questions =()=>{
- 
+debugger
   const loggedInUser = useSelector(store=> store.user.user)
+  console.log(loggedInUser)
   const  allQuestionData = useSelector((store)=> store.allQuestion.allQuestion)
- 
   console.log(allQuestionData)
 
-  const questions = []
-  allQuestionData?.map( x => questions.push(x))
+ const DataAllQuestions = Object.values(allQuestionData);
+ const jsonDataAllQuestion = JSON.parse(JSON.stringify(DataAllQuestions))
 
-   questions.sort((firstItem, secondItem) => secondItem.timestamp - firstItem.timestamp)
-   const newQuestions = questions?.filter( val=>{
-    return val?.optionOne?.votes?.includes(loggedInUser) === false &&
-    val?.optionTwo?.votes?.includes(loggedInUser )=== false
+ 
+
+  jsonDataAllQuestion.sort((firstItem, secondItem) => secondItem.timestamp - firstItem.timestamp);
+  jsonDataAllQuestion.forEach(val => val.timestamp = new Date(val.timestamp).toLocaleString())
+
+  const newQuestions = jsonDataAllQuestion.filter(val=>{
+    return val.optionOne.votes.includes(loggedInUser) === false &&
+    val.optionTwo.votes.includes(loggedInUser) === false
   } )
-  
-  const doneQuestions = questions?.filter(val=> val?.optionOne?.votes.includes(loggedInUser) === true ||
-  val?.optionTwo?.votes?.includes(loggedInUser) === true)
+
+  const doneQuestions = jsonDataAllQuestion.filter(val=> val.optionOne.votes.includes(loggedInUser) === true ||
+  val.optionTwo.votes.includes(loggedInUser) === true)
+
+ 
 
   return (
         <div>
@@ -29,7 +35,7 @@ const Questions =()=>{
                 <div className='flex'>
                 {
                     newQuestions?.map(
-                        (x) =>  <QuestionCard  key={x.id}  data={x}  /> 
+                        (x) =>  <QuestionCard  key={x.id}  data={x}  />
                     )
                 }                              
                 </div>
@@ -43,7 +49,7 @@ const Questions =()=>{
                             (y)=> <QuestionCard key={y.id} data={y}/>
                         )
                     }
-                 
+
                 </div>
             </div>
         </div>

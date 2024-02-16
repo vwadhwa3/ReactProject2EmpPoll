@@ -5,13 +5,13 @@ const Leaderboard = () => {
   const allUsers  = useSelector ((store) => store.allUser.allUser)
 
   const questionData = useSelector((store)=> store.allQuestion.allQuestion)
-
+  const jsonQuestionData  =  Object.values(questionData)
   const leaderboardData = [];
 
   allUsers?.map(val => {
-    leaderboardData?.push({name: val.name, avatarURL: val.avatarURL,answer:  ( questionData.filter(item => item?.optionOne?.votes?.includes(val.id) === true || 
+    leaderboardData?.push({name: val.name, avatarURL: val.avatarURL,answer:  ( jsonQuestionData.filter(item => item?.optionOne?.votes?.includes(val.id) === true || 
         item?.optionTwo?.votes?.includes(val.id)=== true)).length, 
-    create: questionData.filter(item => item.author === val.id).length})
+    create: jsonQuestionData.filter(item => item.author === val.id).length})
   })
 
  

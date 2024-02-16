@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import  '../App.css'
+//import  '../App.css'
 import { useDispatch, useSelector } from 'react-redux'; 
 import { useEffect ,useState } from 'react';
 import {_getUsers,_getQuestions} from "./_DATA"
@@ -7,8 +7,8 @@ import {login} from "./reducers/AuthSlice"
 import { createBrowserRouter ,RouterProvider,Outlet} from "react-router-dom";
 import Leaderboard from './components/LeaderBoard'
 import Questions from "./components/Questions"
-import { createBrowserRouter ,RouterProvider,Outlet} from "react-router-dom"; 
-import { useSelector,useDispatch } from "react-redux";
+ 
+ 
 import { Provider } from "react-redux";
 import appStore from "./reducers/appStore"
 import Header from './components/Header'
@@ -16,9 +16,9 @@ import Error from './components/Error'
 import PollCreactionPage from './components/PollCreationPage'
 import PollPage from './components/PollPage'
 import {allUserData} from "./reducers/AllUserDataSlice"
-import {allQuestionData} from "./reducers/allQuestionSlice"
-
-const AppWrapper = () => {   
+// import {QuestionsList} from "./reducers/allQuestionSlice"
+ import { QuestionsList } from "./reducers/allQuestionSlice";
+export const AppWrapper = () => {   
     return (
       <Provider store={appStore}> 
         <AppLayout />  
@@ -47,13 +47,16 @@ const AppWrapper = () => {
     setuserList(jsonAllUserData)
     dispatch(allUserData(await jsonAllUserData))
 }
-
-    const getAllQuestiondata = async () =>{
-        const data = await _getQuestions()
-        const convertingAllQuestionData = Object.values(await data)
-        const jsonAllQuestionData =JSON.parse(JSON.stringify(await convertingAllQuestionData))
-        dispatch(allQuestionData(jsonAllQuestionData))        
-      }
+const getAllQuestiondata = async () =>{
+  const qdata = QuestionsList()
+  dispatch(await qdata );      
+}
+    // const getAllQuestiondata = async () =>{
+    //     const data = await _getQuestions()
+    //     const convertingAllQuestionData = Object.values(await data)
+    //     const jsonAllQuestionData =JSON.parse(JSON.stringify(await convertingAllQuestionData))
+    //     dispatch(allQuestionData(jsonAllQuestionData))        
+    //   }
 
    
     const handleClick = (event) => {

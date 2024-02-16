@@ -1,10 +1,7 @@
-import {useRouteError} from "react-router-dom"
-const  Error = () =>{
-    const error = useRouteError();
+ const  Error = () =>{   
     return(
         <div className="text-center"> 
-            Page Not Found !!!!
-            <h1>{error?.data}</h1>
+            Page Not Found !!!!             
         </div>
     )
 }

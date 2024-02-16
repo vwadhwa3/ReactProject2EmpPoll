@@ -11,7 +11,7 @@ const Header = () => {
         dispatch(logout())
     }
     const user = useSelector((store) => store.user.user)
-    const filterUserData= allUserData.filter(x=> x.id == user)    
+    const filterUserData= allUserData?.filter(x=> x.id == user)    
     const{ avatarURL,id} = filterUserData[0]
 
 return (
