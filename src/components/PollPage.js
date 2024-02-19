@@ -1,10 +1,12 @@
 import { useSelector , useDispatch } from "react-redux";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect ,useState} from "react";
 import { QuestionsList } from "../reducers/allQuestionSlice";
 import {_getQuestions} from "../_DATA"
 import { addNewAnswer } from "../reducers/allQuestionSlice";
+import Page404 from "./Page404";
 const PollPage=()=>{
+    const navigate = useNavigate();
     const { question_id } = useParams();
     console.log("question_id",question_id)
     const dispatch = useDispatch()
@@ -24,7 +26,15 @@ const PollPage=()=>{
    },[])
 
    const loopableGetQuestion = Object.values(getQuestion) 
-  const filterQuestion =loopableGetQuestion.filter(x =>x.id == question_id )
+
+   const filterQuestion =loopableGetQuestion.filter(x =>x.id == question_id )
+   console.log("filterQuestion")
+   console.log(filterQuestion.length === 0 )
+
+if(!filterQuestion.length  ){
+  
+  return (<Page404 />);
+}
 
    const{ 
     author,
@@ -34,13 +44,12 @@ const PollPage=()=>{
     timestamp}    = filterQuestion[0]
     const getUserDataForQuestion = getAllUser.filter(x => x.id == author)
     const {    avatarURL,name   } = getUserDataForQuestion[0]
-
-   const [voteCount1, setVoteCount1] = useState(0);
-   const [voteCount2, setVoteCount2] = useState(0);
-   const [answer, setAnswer] = useState("");
-   const [hide, setHide] = useState(false);
-   const [disableOption1, setIdisableOption1] = useState(false);
-   const [disableOption2, setdisableOption2] = useState(false);
+    const [voteCount1, setVoteCount1] = useState(0);
+    const [voteCount2, setVoteCount2] = useState(0);
+    const [answer, setAnswer] = useState("");
+    const [hide, setHide] = useState(false);
+    const [disableOption1, setIdisableOption1] = useState(false);
+    const [disableOption2, setdisableOption2] = useState(false);
 
    useEffect(() => {
     setVoteCount1(filterQuestion[0]?.optionOne.votes.length)
@@ -74,7 +83,7 @@ const PollPage=()=>{
           }
     }
 
-    return(
+return(
 <div className="bg-gray-200 flex justify-center items-center h-screen">
     <div className="bg-white p-8 rounded-lg shadow-md w-96 text-center">
     <h2 className="text-2xl font-semibold mb-2">Poll by {author} |<span> {name} </span></h2>
