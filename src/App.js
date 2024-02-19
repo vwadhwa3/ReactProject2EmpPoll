@@ -27,8 +27,8 @@ export const AppWrapper = () => {
   }
    const AppLayout =()=>{ 
     const [userList,setuserList]= useState();
-    const [username, setUsername] = useState("sarahedo");
-    const [password, setPassword] = useState("password123");
+    const [username, setUsername] = useState("tylermcginnis");
+    const [password, setPassword] = useState("abc321");
      //const user= null;  
     const user = useSelector((store) => store.user.user)
     const dispatch = useDispatch()
